@@ -51,15 +51,19 @@ In real embedded systems, actuators are controlled through commands from externa
 
 ### Install ESP32Servo Library
 
+```text
 Arduino IDE → Library Manager → Search **ESP32Servo** → Install
 
 ---
 
 ## Code Structure
 
+```text
 ESP32-UART-to-Servo/
-├── UART_to_Servo.ino 
+├── UART_to_Servo.ino
+├── MIT License 
 └── README.md
+
 
 ---
 
@@ -83,6 +87,7 @@ ESP32-UART-to-Servo/
 
 ### Example Inputs
 
+```text
 0 45 90 180
 
 ---
@@ -121,8 +126,7 @@ This project is licensed under the **MIT License**.
 
 ## Author
 
-**Daniel Raj Christeen**  
-Embedded Systems | ESP32 | Robotics | Open Source  
+**Daniel Raj Christeen**
 
 GitHub: https://github.com/DanielRajChristeen
 
