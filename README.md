@@ -53,7 +53,7 @@ In real embedded systems, actuators are controlled through commands from externa
 
 ```text
 Arduino IDE → Library Manager → Search **ESP32Servo** → Install
-
+```
 ---
 
 ## Code Structure
@@ -63,7 +63,7 @@ ESP32-UART-to-Servo/
 ├── UART_to_Servo.ino
 ├── MIT License 
 └── README.md
-
+```
 
 ---
 
@@ -89,6 +89,7 @@ ESP32-UART-to-Servo/
 
 ```text
 0 45 90 180
+```
 
 ---
 
