@@ -88,14 +88,20 @@ ESP32-UART-to-Servo/
 ### Example Inputs
 
 ```text
-0 45 90 180
+0 45 90 190
 ```
 
 ---
 
 ## Example Serial Output
 
-ESP32 Servo Control Ready Send angle (0–180) via Serial Servo moved to: 90 Servo moved to: 45 Invalid angle! Use 0–180
+```text
+ESP32 Servo Control Ready
+Send angle (0–180) via Serial
+Servo moved to: 90
+Servo moved to: 45
+Invalid angle! Use 0–180
+```
 
 ---
 
