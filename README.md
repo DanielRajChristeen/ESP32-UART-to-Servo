@@ -1,229 +1,130 @@
 # ESP32 UART to Servo Control
 
-🔧 Simple, reliable servo motor control using UART (Serial) communication on ESP32
+Simple and reliable servo motor control using UART (Serial) communication on ESP32.
 
-This project demonstrates how to control a servo motor connected to an ESP32 by sending angle values (0–180) over UART / Serial Monitor.
-It’s designed as a foundational building block for robotics, automation, and distributed embedded systems where commands are sent digitally instead of hard-coded logic.
-
+This project demonstrates how to control a servo motor connected to an ESP32 by sending angle values (0–180) via Serial (UART). It is designed as a minimal, clean, and extensible example for embedded systems, robotics, and IoT actuator control.
 
 ---
 
-🚀 Why This Project Exists
+## Features
 
-In real-world embedded systems, actuators (like servos) rarely work in isolation.
-They receive commands from:
-
-* PCs
-
-* Raspberry Pi
-
-* Other microcontrollers
-
-* Edge/IoT gateways
-
-
-This repo provides a clean UART-to-Actuator pipeline, making it ideal for:
-
-* Robotics arms
-
-* Remote control systems
-
-* ESP32 ↔ Raspberry Pi communication
-
-* Debugging and testing servo behavior quickly
-
-
-No fluff. No UI dependency. Just solid signal flow.
-
+- UART (Serial) based servo control  
+- Angle input validation (0–180 degrees)  
+- Standard 50Hz servo signal  
+- Safe PWM pulse range  
+- Clean and minimal code structure  
 
 ---
 
-🧠 How It Works (High-Level)
+## Why This Project
 
-1. ESP32 initializes UART at 115200 baud
-
-
-2. Servo is attached using ESP32Servo library
-
-
-3. User sends an angle (0–180) via Serial Monitor
-
-
-4. ESP32 validates the input
-
-
-5. Servo moves to the requested position
-
-
-
-This keeps control logic decoupled from the actuator — a best practice in scalable system design.
-
+In real embedded systems, actuators are controlled through commands from external systems such as PCs, Raspberry Pi, or other microcontrollers. This project acts as a foundational UART-to-actuator interface that can be extended into larger robotic or IoT systems.
 
 ---
 
-🛠 Hardware Requirements
+## Hardware Requirements
 
-ESP32 Dev Kit V1
-
-Servo Motor (SG90 / MG90 / compatible)
-
-External 5V supply for servo (recommended)
-
-Jumper wires
-
-
+- ESP32 Dev Kit V1  
+- Servo motor (SG90, MG90, or compatible)  
+- External 5V power supply for servo (recommended)  
+- Jumper wires  
 
 ---
 
-🔌 Pin Configuration
+## Pin Configuration
 
-Component	ESP32 Pin
+| Component      | ESP32 Pin |
+|----------------|-----------|
+| Servo Signal   | GPIO 5    |
+| Servo VCC      | 5V (External recommended) |
+| Servo GND      | GND       |
 
-Servo Signal	GPIO 5 (D5)
-Servo VCC	5V (External preferred)
-Servo GND	GND
-
-
-⚠️ Important:
-Do not power the servo directly from ESP32 5V pin if it draws high current. Use a common ground.
-
+> Note: Always connect the grounds of ESP32 and the servo power supply together.
 
 ---
 
-📦 Software Requirements
+## Software Requirements
 
-Arduino IDE
+- Arduino IDE  
+- ESP32 Board Package  
+- ESP32Servo Library  
 
-ESP32 Board Package
+### Install ESP32Servo Library
 
-Library: ESP32Servo
-
-
-Install ESP32Servo Library
-
-Arduino IDE → Library Manager → Search "ESP32Servo" → Install
-
+Arduino IDE → Library Manager → Search **ESP32Servo** → Install
 
 ---
 
-📄 Code Overview
+## Code Structure
 
-File: UART_to_Servo.ino
-
-Key Features
-
-UART-based angle input
-
-Input validation (0–180 degrees)
-
-Safe servo pulse range
-
-Clean serial feedback
-
-
-Core Logic
-
-myServo.setPeriodHertz(50);   // Standard servo frequency
-myServo.attach(SERVO_PIN, 500, 2400);
-
-int receivedAngle = input.toInt();
-if (receivedAngle >= 0 && receivedAngle <= 180) {
-    myServo.write(receivedAngle);
-}
-
+ESP32-UART-to-Servo/
+├── UART_to_Servo.ino 
+└── README.md
 
 ---
 
-▶️ How to Run
+## How It Works
 
-1. Connect servo to ESP32 (GPIO5)
-
-
-2. Upload UART_to_Servo.ino
-
-
-3. Open Serial Monitor
-
-
-4. Set baud rate to 115200
-
-
-5. Send angle values:
-
-0
-45
-90
-180
-
-
-
+1. ESP32 initializes UART at 115200 baud  
+2. Servo is attached with a safe PWM range  
+3. User sends an angle value via Serial Monitor  
+4. ESP32 validates the input  
+5. Servo moves to the specified position  
 
 ---
 
-🧪 Example Output
+## Usage Instructions
 
-ESP32 Servo Control Ready
-Send angle (0–180) via Serial
-Servo moved to: 90
-Servo moved to: 45
-Invalid angle! Use 0–180
+1. Connect the servo signal pin to GPIO 5  
+2. Upload `UART_to_Servo.ino` to ESP32  
+3. Open Serial Monitor  
+4. Set baud rate to **115200**  
+5. Send angle values followed by newline  
 
+### Example Inputs
 
----
-
-📈 Use Cases
-
-Robotic arm joint control
-
-ESP32 ↔ Raspberry Pi actuator bridge
-
-UART protocol testing
-
-Embedded systems learning
-
-IoT actuator prototyping
-
-
-This can be easily extended to:
-
-Multiple servos
-
-Binary protocols
-
-WiFi → UART bridges
-
-WebSocket / MQTT control
-
-
+0 45 90 180
 
 ---
 
-🧩 Future Enhancements (Optional Roadmap)
+## Example Serial Output
 
-Multiple servo support
-
-Non-blocking UART parsing
-
-Command format (S1:90)
-
-WiFi / BLE control layer
-
-Watchdog integration
-
-
+ESP32 Servo Control Ready Send angle (0–180) via Serial Servo moved to: 90 Servo moved to: 45 Invalid angle! Use 0–180
 
 ---
 
-📜 License
+## Applications
 
-This project is licensed under the MIT License.
-You’re free to use, modify, and distribute it — just keep the license intact.
-
+- Robotic arm control  
+- ESP32 to Raspberry Pi UART communication  
+- Embedded systems learning  
+- Actuator testing and debugging  
+- IoT and automation prototypes  
 
 ---
 
-👤 Author
+## Future Enhancements
 
-Daniel Raj C
+- Multiple servo support  
+- Structured command protocol  
+- Non-blocking serial handling  
+- WiFi / BLE based control  
+- Integration with dashboards or IoT platforms  
 
-🔗 GitHub: https://github.com/DanielRajChristeen
+---
+
+## License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## Author
+
+**Daniel Raj Christeen**  
+Embedded Systems | ESP32 | Robotics | Open Source  
+
+GitHub: https://github.com/DanielRajChristeen
+
+
+---
